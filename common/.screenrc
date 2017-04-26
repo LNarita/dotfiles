@@ -1,0 +1,29 @@
+escape ^\b
+
+# detach on hangup
+autodetach on            
+crlf off             
+defflow off             
+# don't display the copyright page
+startup_message off
+vbell on
+
+hardstatus alwayslastline
+hardstatus string '%{= m}Load Avg:%{= G} %l %{= G}[ %{G}%H %{g}][%= %{=w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+vbell_msg             " *beep* "
+
+# Key bindings
+# Remove some default key bindings by binding them to "nothing" (empty right-hand-side):
+# bind .  dumptermcap # default
+bind .
+bind ^\
+bind \\
+
+bind P paste .
+
+bind , prev
+bind . next
+
+shell /bin/bash
