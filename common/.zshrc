@@ -30,16 +30,28 @@ DEV_TOOLS_PATH="$HOME/dev-tools"
 JAVA_HOME="$DEV_TOOLS_PATH/java/jdk-1.8"
 MAVEN_HOME="$DEV_TOOLS_PATH/maven"
 PYENV_ROOT="$DEV_TOOLS_PATH/pyenv"
+SWIFTENV_ROOT="$DEV_TOOLS_PATH/swiftenv"
+RBENV_ROOT="$DEV_TOOLS_PATH/rbenv"
+NVM_DIR="$DEV_TOOLS_PATH/nvm"
+LEIN_SCRIPT="$DEV_TOOLS_PATH/leiningen/"
+JAVA_CMD="$JAVA_HOME/bin/java"
 
 export JAVA_HOME
 export PYENV_ROOT
+export SWIFTENV_ROOT
+export RBENV_ROOT
+export NVM_DIR
+export JAVA_CMD
 
-PATH="$PYENV_ROOT/bin:$MAVEN_HOME/bin:$PATH"
+PATH="$LEIN_SCRIPT:$RBENV_ROOT/bin:$SWIFTENV_ROOT/bin:$PYENV_ROOT/bin:$MAVEN_HOME/bin:$PATH"
 
 export PATH
 eval "$(pyenv init -)"
+eval "$(swiftenv init -)"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export EDITOR=/usr/bin/vim
+export VISUAL="$EDITOR"
 
 if [[ -d $HOME/.dot_not/common/config ]]; then
     if [[ "$(ls -A $HOME/.dot_not/common/config)" ]]; then

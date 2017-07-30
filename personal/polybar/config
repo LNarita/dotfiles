@@ -11,27 +11,35 @@ gray = #ecedee
 black = #422d2d
 red = #aa0e50
 blue = #8194bf
-yellow = #27c282
+yellow = #e1aa5d
 green = #1dcc9f
 magenta = #a673a6
 
 [bar/top]
-bottom = false
-override-redirect = false
+fixed-center = true
+
+border-size = 10
+border-bottom-size = 0
+border-color = $00000000
+
 width = 100%
 height = 22
 
-enable-ipc = true
+offset-x = 5%
+offset-y = 1%
+radius = 4.0
 
-padding-left = 0
-padding-right = 1
+enable-ipc = false
 
-module-margin-right = 1
+padding-left = 1
+padding-right = 0
+
+module-margin-right = 0
 module-margin-left = 0
 
-modules-right = updates filesystem battery date menu0 
+modules-right = filesystem battery date menu0 
 modules-center = volume
-modules-left = i3 wlan eth cpu memory
+modules-left = i3 wlan eth cpu memory updates
 
 background = #66090909
 foreground = ${colors.white}
@@ -45,21 +53,16 @@ tray-offset-x =
 tray-maxsize = 
 tray-padding = 
 
-font-0 = terminus:size=8;0
-font-1 = FontAwesome:size=10;0
-font-2 = TakaoGothic:weight=bold:size=10;0
-font-3 = FontAwesome:size=8;0
+font-1 = Hack:size=8;0
+font-0 = "Ubuntu Mono derivative Powerline:size=10;0"
 
 [module/filesystem]
 type = internal/fs
 interval = 25
 
 mount-0 = /
-;mount-1 = /home
-;mount-2 = /invalid/mountpoint
 
 label-mounted = %free%
-label-mounted-underline = ${colors.white}
 label-mounted-padding = 1
 
 label-unmounted =
@@ -71,22 +74,21 @@ type = internal/i3
 format = <label-mode> <label-state>
 index-sort = true
 
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4 
+label-focused-font = 1
+label-unfocused-font = 1
+label-urgent-font = 1
+label-visible-font = 1 
 
 label-focused = (%index%) %icon%
-;label-focused-background = ${colors.gray}
+label-focused-background = ${colors.green}
+label-focused-foreground = ${colors.black}
 label-focused-padding = 1
 
 label-unfocused = %index%
 label-unfocused-padding = 1
-;label-unfocused-background = ${colors.black}
 label-unfocused-underlinde = ${colors.white}
 
 label-urgent = %index%!
-;label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 label-urgent-foreground = ${colors.red}
 
@@ -94,13 +96,11 @@ label-visible = %index% %icon%
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
 
-
 ws-icon-0 = 1;web
 ws-icon-1 = 2;term
-ws-icon-2 = 3;random
-ws-icon-3 = 4;media
-ws-icon-4 = 5;black magic
-ws-icon-default = ::error::;
+ws-icon-2 = 3;dev
+ws-icon-3 = 4;preview
+ws-icon-default = ::black magic::;
 
 [module/mpd]
 type = internal/mpd
@@ -133,7 +133,7 @@ toggle-off-foreground = #66
 [module/cpu]
 format-label = internal/cpu
 
-format = <label>
+format = <label> <ramp-coreload>
 
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
@@ -143,12 +143,10 @@ ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
-ramp-coreload-underline = ${colors.white}
 
 type = internal/cpu
 interval = 2
-label = %{F${colors.white} CPU  %percentage%% %{F-}
-label-underline = ${colors.white}
+label = %{F${colors.white} CPU %percentage%% %{F-}
 padding= 2
 
 
@@ -157,7 +155,6 @@ type = internal/memory
 interval = 2
 
 label = %{F${colors.white} RAM %percentage_used%% %{F-}
-label-underline = ${colors.white}
 label-foreground = ${colors.white}
 
 [module/wlan]
@@ -169,37 +166,43 @@ format-connected-padding = 1
 format-disconnected-padding = 1
 
 format-connected = <label-connected>
-format-connected-underline = ${colors.white}
+format-connected-underline = ${colors.green}
 format-disconnected-underline = ${colors.red}
 
-label-connected = %essid%
-label-disconnected = 
+label-connected = %essid% %downspeed:5% %upspeed:5%
+label-disconnected = no connection
 label-disconnected-foreground = ${colors.gray}
 
+format-packetloss = <animation-packetloss> <label-connected>
+
+animation-packetloss-0 = ⚠
+animation-packetloss-1 = 📶
 
 [module/eth]
 type = internal/network
-interface = wlp2s0
+interface = eth1 
 interval = 3.0
 
 format-connected-padding = 1
 format-disconnected-padding = 1
 
-format-connected-underline = ${colors.white}
+format-connected-underline = ${colors.green}
 format-disconnected-underline = ${colors.red}
 
-label-connected = %local_ip%
-label-disconnected = 
+label-connected = %local_ip% %downspeed:5% %upspeed:5%
+label-disconnected = no connection
 label-disconnected-foreground = ${colors.gray}
 
+format-packetloss = <animation-packetloss> <label-connected>
+
+animation-packetloss-0 = ⚠
+animation-packetloss-1 = 📶
 
 [module/date]
 type = internal/date
 date-alt =   %A %H:%M 
 date =   %b/%d/%y %H:%M 
 interval = 5
-format-underline = ${colors.white}
-;format-background = ${colors.black}
 format-foreground = ${colors.white}
 format-padding = 1
 
@@ -220,16 +223,16 @@ bar-volume-foreground-0 = ${colors.green}
 bar-volume-foreground-1 = ${colors.green}
 bar-volume-foreground-2 = ${colors.green}
 bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.magenta}
+bar-volume-foreground-4 = ${colors.yellow}
 bar-volume-foreground-5 = ${colors.red}
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 4
+bar-volume-indicator-font = 1
 bar-volume-indicator-foreground = ${colors.blue}
 bar-volume-fill = ─
-bar-volume-fill-font = 4
+bar-volume-fill-font = 1
 bar-volume-empty = ─
-bar-volume-empty-font = 4
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.gray}
 
 
@@ -244,7 +247,7 @@ format-charging-underline = ${colors.green}
 format-charging-padding = 1
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${colors.magenta}
+format-discharging-underline = ${colors.red}
 format-discharging-padding = 1
 
 format-full = <label-full>
@@ -261,7 +264,6 @@ animation-charging-0 = .
 animation-charging-1 = ..
 animation-charging-2 = ...
 animation-charging-3 = ..
-;animation-charging-4 = .
 animation-charging-foreground = ${colors.white}
 animation-charging-framerate = 500
 
@@ -292,14 +294,12 @@ ramp-foreground = #55
 type = custom/menu
 
 format = <label-toggle> <menu>
-format-underline = ${colors.white}
 format-padding = 1
 
 menu-0-0 = shutdown
 menu-0-0-exec = shutdown now
 menu-0-1 = restart
 menu-0-1-exec = shutdown -r now
-menu-0-2 = cancel
 
 label-separator = " | "
 label-open = ${env:USER:unknown}
@@ -308,32 +308,5 @@ label-close = x
 [module/updates]
 type = custom/script
 
-exec = echo 
+exec = ~/.config/polybar/count_upgradable
 
-
-[module/powermenu]
-type = custom/menu
-
-label-open = power
-label-open-foreground = #e60053
-label-close = cancel
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-; vim:ft=dosini
