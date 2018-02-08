@@ -32,3 +32,27 @@ git-latest-stable() {
     # Checkout latest tag
     git checkout $latest_tag
 }
+
+repo() {
+    env=$1
+    repo_url=$2
+    clone_dir=${3:-$(echo $2 | sed -E "s/^.*\/(.*)$/\1/" | sed "s/.git$//")}
+    if [[ -z $repo_url ]]; then
+        echo "no url found"
+        return 1
+    fi
+    if [[ "$env" =~ "^w(ork)?" ]]; then
+        echo "will clone $repo_url using work credentials" &&
+        git clone $repo_url $clone_dir &&
+        cd $clone_dir &&
+        git config user.email "$GIT_WORK_EMAIL"
+    elif [[ "$env" =~ "^p(ersonal)?" ]]; then
+        echo "will clone $repo_url using personal credentials" &&
+        git clone $repo_url $clone_dir &&
+        cd $clone_dir &&
+        git config user.email "$GIT_PERSONAL_EMAIL"
+    else
+        echo "invalid environment"
+    fi
+    echo "finished"
+}
