@@ -3,4 +3,4 @@
 killall polybar
 
 polybar top &
-#polybar bottom &
+polybar bottom &
