@@ -9,16 +9,10 @@ XF86AudioMute
 
 ### Master Volume
 XF86AudioRaiseVolume
-	amixer set Master 2.5%+,5%+
-
-super + XF86AudioRaiseVolume
-	amixer set Master 0.5%+,1%+
+	amixer set Master 5%+
 
 XF86AudioLowerVolume
-	amixer set Master 2.5%-,5%-
-
-super + XF86AudioLowerVolume
-	amixer set Master 0.5%-,1%-
+	amixer set Master 5%-
 
 {_,super,super + shift} + Print
     screenshot {nor,foc,sel}
