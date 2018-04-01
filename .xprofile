@@ -1,0 +1,10 @@
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+if ! pgrep -u "$USER" fcitx > /dev/null; then
+    fcitx -d
+fi
+
+wal -i ~/Pictures/wallpaper/tkn-tsurumaru.jpg -i 1B1B1B
+
