@@ -38,16 +38,16 @@ JAVA_CMD="$JAVA_HOME/bin/java"
 
 
 #export JAVA_HOME
-#export PYENV_ROOT
+export PYENV_ROOT
 #export SWIFTENV_ROOT
 #export RBENV_ROOT
 #export NVM_DIR
 #export JAVA_CMD
 
-PATH="$LEIN_SCRIPT:$RBENV_ROOT/bin:$SWIFTENV_ROOT/bin:$PYENV_ROOT/bin:$MAVEN_HOME/bin:$PATH"
+PATH="$PYENV_ROOT/bin:$PATH"
 
-#export PATH
-#eval "$(pyenv init -)"
+export PATH
+command -v pyenv && eval "$(pyenv init -)"
 #eval "$(swiftenv init -)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -79,3 +79,8 @@ if [[ -d $HOME/.dot_not/$WORKING_ENVIRONMENT/config ]]; then
     fi
 fi
 
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)

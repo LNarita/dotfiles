@@ -9,3 +9,5 @@ rofi.padding : 12
 rofi.fullscreen : false
 rofi.width : 350
 rofi.lines : 6
+
+rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi

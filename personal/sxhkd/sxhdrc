@@ -17,13 +17,16 @@ XF86AudioLowerVolume
 {_,super,super + shift} + Print
     screenshot {nor,foc,sel}
 
+super + p
+    dm-tool lock
+
 super + Return
    gnome-terminal 
 
 super + semicolon
     vivaldi-stable --incognito
 
-super + space
+super + d
     rofi -show run
 
 super + shift + r
