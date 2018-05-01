@@ -23,14 +23,13 @@ fi
 antigen apply
 
 ## --== User Env Config
-WORKING_ENVIRONMENT="personal"
+WORKING_ENVIRONMENT="work"
 VPN_CONFIG="$HOME/movile/vpn"
 
 DEV_TOOLS_PATH="$HOME/dev-tools"
 #JAVA_HOME="$DEV_TOOLS_PATH/java/jdk-1.8"
 MAVEN_HOME="$DEV_TOOLS_PATH/maven"
 PYENV_ROOT="$DEV_TOOLS_PATH/pyenv"
-SWIFTENV_ROOT="$DEV_TOOLS_PATH/swiftenv"
 RBENV_ROOT="$DEV_TOOLS_PATH/rbenv"
 NVM_DIR="$DEV_TOOLS_PATH/nvm"
 LEIN_SCRIPT="$DEV_TOOLS_PATH/leiningen/"
@@ -39,16 +38,15 @@ JAVA_CMD="$JAVA_HOME/bin/java"
 
 #export JAVA_HOME
 export PYENV_ROOT
-#export SWIFTENV_ROOT
-#export RBENV_ROOT
+export RBENV_ROOT
 #export NVM_DIR
 #export JAVA_CMD
 
-PATH="$PYENV_ROOT/bin:$PATH"
+PATH="$RBENV_ROOT/bin:$PYENV_ROOT/bin:$PATH"
 
 export PATH
 command -v pyenv && eval "$(pyenv init -)"
-#eval "$(swiftenv init -)"
+command -v rbenv && eval "$(rbenv init -)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export EDITOR=/usr/bin/vim
@@ -58,24 +56,24 @@ export VISUAL="$EDITOR"
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-eval-file
 fi
-if [[ -z "$SSH_AGENT_PID" ]]; then
+if [[ -z $SSH_AGENT_PID ]] && [[ -f ~/.ssh-agent-eval ]]; then
     eval "$(<~/.ssh-agent-eval-file)"
 fi
 
 added_keys=$(ssh-add -l)
 for f in $(find ~/.ssh/ -not -name "*.pub" -a -iname "id_rsa*"); do
-    [[ -f "$f" ]] && [ ! $(echo $added_keys | grep -o -e "$f") ] && ssh-add "$f";
+    [[ -s $f ]] && [[ -z $(echo $added_keys | grep -o "$f") ]] && ssh-add "$f";
 done
 
 if [[ -d $HOME/.dot_not/common/config ]]; then
     if [[ "$(ls -A $HOME/.dot_not/common/config)" ]]; then
-        for f in $HOME/.dot_not/common/config/*; do [[ -f "$f" ]] && source "$f"; done
+        for f in $HOME/.dot_not/common/config/*; do [[ -s $f ]] && source "$f"; done
     fi
 fi
 
 if [[ -d $HOME/.dot_not/$WORKING_ENVIRONMENT/config ]]; then
     if [[ "$(ls -A $HOME/.dot_not/$WORKING_ENVIRONMENT/config)" ]]; then
-        for f in $HOME/.dot_not/$WORKING_ENVIRONMENT/config/*; do [[ -f "$f" ]] && source "$f"; done
+        for f in $HOME/.dot_not/$WORKING_ENVIRONMENT/config/*; do [[ -s $f ]] && source "$f"; done
     fi
 fi
 
