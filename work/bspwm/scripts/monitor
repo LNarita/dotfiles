@@ -1,0 +1,25 @@
+#!/bin/bash
+
+max_desktops=${1:-8}
+desktop=0
+i=1
+
+monitors=($(bspc query -M --names))
+max_desktops_per_monitor=$(($max_desktops/${#monitors[@]}))
+
+if [ $max_desktops_per_monitor -lt 1 ]; then
+    ((max_desktops_per_monitor=1))
+fi
+
+for monitor in ${monitors[@]}; do
+    bspc monitor $monitor -D 1
+    bspc monitor $monitor --reset-desktops 1
+    bspc monitor $monitor --remove-desktops 1
+    ((desktops=0))
+    while [ $desktops -lt $max_desktops_per_monitor ]; do
+        ((i++))
+        ((desktops++))
+        bspc monitor $monitor --add-desktops $i
+    done
+done
+
