@@ -1,11 +1,13 @@
 #!/bin/bash
 
-max_desktops=${1:-8}
+DEFAULT_NUMBER_OF_DESKTOPS=10
+max_desktops=${1:-$DEFAULT_NUMBER_OF_DESKTOPS}
 desktop=0
 i=1
 
 monitors=($(bspc query -M --names))
-max_desktops_per_monitor=$(($max_desktops/${#monitors[@]}))
+effective_number_of_desktops=$(($max_desktops - ${#monitors[@]}))
+max_desktops_per_monitor=$(($effective_number_of_desktops/${#monitors[@]}))
 
 if [ $max_desktops_per_monitor -lt 1 ]; then
     ((max_desktops_per_monitor=1))

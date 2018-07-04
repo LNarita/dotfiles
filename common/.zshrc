@@ -23,7 +23,6 @@ fi
 antigen apply
 
 ## --== User Env Config
-WORKING_ENVIRONMENT="work"
 VPN_CONFIG="$HOME/movile/vpn"
 
 DEV_TOOLS_PATH="$HOME/dev-tools"
@@ -39,7 +38,7 @@ JAVA_CMD="$JAVA_HOME/bin/java"
 #export JAVA_HOME
 export PYENV_ROOT
 export RBENV_ROOT
-#export NVM_DIR
+export NVM_DIR
 #export JAVA_CMD
 
 PATH="$RBENV_ROOT/bin:$PYENV_ROOT/bin:$PATH"
@@ -55,8 +54,6 @@ export VISUAL="$EDITOR"
 # SSH keys
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-eval-file
-fi
-if [[ -z $SSH_AGENT_PID ]] && [[ -f ~/.ssh-agent-eval ]]; then
     eval "$(<~/.ssh-agent-eval-file)"
 fi
 
