@@ -18,13 +18,13 @@ XF86AudioLowerVolume
     screenshot {nor,foc,sel}
 
 super + p
-    dm-tool lock
+    gnome-screensaver-command -l
 
 super + Return
    gnome-terminal 
 
 super + semicolon
-    firefox --private-window
+    firefox
 
 super + d
     rofi -show run
