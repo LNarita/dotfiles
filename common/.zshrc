@@ -33,7 +33,9 @@ RBENV_ROOT="$DEV_TOOLS_PATH/rbenv"
 NVM_DIR="$DEV_TOOLS_PATH/nvm"
 LEIN_SCRIPT="$DEV_TOOLS_PATH/leiningen/"
 JAVA_CMD="$JAVA_HOME/bin/java"
-
+ANACONDA_ROOT="$DEV_TOOLS_PATH/anaconda3"
+export DOCKER_COMPOSE_LOCATION=`whence docker.compose`
+export DOCKER_LOCATION=`whence docker`
 
 #export JAVA_HOME
 export PYENV_ROOT
@@ -41,11 +43,11 @@ export RBENV_ROOT
 export NVM_DIR
 #export JAVA_CMD
 
-PATH="$RBENV_ROOT/bin:$PYENV_ROOT/bin:$PATH"
+PATH="$ANACONDA_ROOT/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$PATH"
 
 export PATH
-command -v pyenv && eval "$(pyenv init -)"
-command -v rbenv && eval "$(rbenv init -)"
+command -v pyenv >/dev/null && eval "$(pyenv init -)"
+command -v rbenv >/dev/null && eval "$(rbenv init -)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export EDITOR=/usr/bin/vim
@@ -73,7 +75,6 @@ if [[ -d $HOME/.dot_not/$WORKING_ENVIRONMENT/config ]]; then
         for f in $HOME/.dot_not/$WORKING_ENVIRONMENT/config/*; do [[ -s $f ]] && source "$f"; done
     fi
 fi
-
 
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.

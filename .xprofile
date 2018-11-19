@@ -1,2 +1,6 @@
-wal -i ~/Pictures/wallpaper/tsuru.png -b 1B1B1B
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+wal -i ~/Pictures/wallpaper/ymnb.png -b 1B1B1B
 

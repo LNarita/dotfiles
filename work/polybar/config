@@ -95,26 +95,41 @@ type = internal/bspwm
 ws-icon-0 = 1;web
 ws-icon-1 = 2;term
 ws-icon-2 = 3;dev
-ws-icon-3 = 4;query
-ws-icon-4 = 5;personal
-ws-icon-default = workspace
+ws-icon-3 = 4;null
+ws-icon-4 = 5;query
+ws-icon-5 = 6;bs
+ws-icon-6 = 7;mq
+ws-icon-7 = 8;rest
+ws-icon-8 = 9;pass
+ws-icon-9 = 10;vpn
+ws-icon-10 = 11;¯\_(ツ)_/¯
+ws-icon-11 = 12;/web
+ws-icon-12 = 13;/sns
+ws-icon-13 = 14;/msg
+ws-icon-14 = 15;/media
+ws-icon-15 = 16;/r/
+ws-icon-16 = 17;/files
+ws-icon-17 = 18;/bs
+ws-icon-18 = 19;/res
+ws-icon-19 = 20;/random
+ws-icon-default = ?
 
 format = <label-state> <label-mode>
 
 label-focused = %icon%
 label-focused-background = ${colors.background}
 label-focused-underline= #ddd
-label-focused-padding = 4
+label-focused-padding = 2
 
-label-occupied = %icon%*
-label-occupied-padding = 4
+label-occupied = %name% %icon%
+label-occupied-padding = 2
 
 label-urgent = %icon%!
-label-urgent-padding = 4
+label-urgent-padding = 2
 
-label-empty = %icon%
+label-empty = %name% %icon%
 label-empty-foreground = #44ffffff
-label-empty-padding = 4
+label-empty-padding = 2
 
 [module/backlight]
 type = internal/backlight
