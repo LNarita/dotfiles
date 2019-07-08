@@ -58,7 +58,7 @@ font-0 = "M+ 1mn:size=8;0"
 inherit = bar/top
 bottom = true
 
-modules-right = xwindow
+modules-right =
 modules-center = bspwm
 modules-left =
 
