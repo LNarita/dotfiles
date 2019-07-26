@@ -14,8 +14,8 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	amixer set Master 5%-
 
-{_,super,super + shift} + Print
-    screenshot {nor,foc,sel}
+{shift,super} + Print
+    scrot {--focused,--multidisp} --border $HOME/'Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
 
 super + p
     gnome-screensaver-command -l
