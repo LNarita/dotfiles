@@ -292,7 +292,7 @@ animation-packetloss-1 = 📶
 [module/date]
 type = internal/date
 date-alt =   %A %H:%M 
-date =   %b/%d/%y %H:%M 
+date =  %A %b/%d %H:%M 
 interval = 5
 format-foreground = ${colors.foreground}
 format-padding = 1

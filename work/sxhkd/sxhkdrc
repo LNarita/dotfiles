@@ -27,7 +27,7 @@ super + semicolon
     firefox
 
 super + d
-    rofi -show run
+    rofi -show run -modi run,calc -qalc-binary /snap/bin/qalculate.qalc -no-history
 
 super + shift + r
     pkill -USR1 -x sxhkd

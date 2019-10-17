@@ -4,7 +4,7 @@ FIFO_FILE="/tmp/mpd.fifo"
 
 killall -s SIGKILL mopidy;
 
-mopidy & 
+~/dev-tools/pyenv/versions/2.7.14/bin/mopidy & 
 {
     [[ -p $FIFO_FILE ]] || mkfifo $FIFO_FILE
 } && {

@@ -5,3 +5,7 @@ export QT_IM_MODULE=ibus
 wal -i ~/Pictures/wallpaper/ymnb.png -b 1B1B1B
 
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
+
+export GTK3_NOCSD_IGNORE=1
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0
+
