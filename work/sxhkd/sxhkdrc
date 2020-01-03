@@ -14,20 +14,20 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	amixer set Master 5%-
 
-{_,super,super + shift} + Print
-    screenshot {nor,foc,sel}
+{shift,super} + Print
+    scrot {--focused,--multidisp} --border $HOME/'Pictures/screenshots/%Y-%m-%d_%H%M%S-$wx$h_scrot.png'
 
 super + p
     gnome-screensaver-command -l
 
 super + Return
-   gnome-terminal 
+    gnome-terminal 
 
 super + semicolon
     firefox
 
 super + d
-    rofi -show run
+    rofi -show run -modi run,calc -qalc-binary /snap/bin/qalculate.qalc -no-history
 
 super + shift + r
     pkill -USR1 -x sxhkd
@@ -58,3 +58,7 @@ super + {_,shift,alt} + {Left,Down,Up,Right}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+control + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
+	bspc {desktop -f,node -d} '^{11,12,13,14,15,16,17,18,19,20}'
+

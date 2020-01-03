@@ -17,7 +17,7 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias emacs="emacs -nw"
 alias :q="exit"
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psg="ps auxf | grep -v grep | grep -i -e VSZ -e"
 
 vpn() {
     echo "Connecting to VPN using config file: $VPN_CONFIG/$1.ovpn"
@@ -56,3 +56,27 @@ repo() {
     fi
     echo "finished"
 }
+
+ggupdate() {
+    untouched_repos=()
+    error_repos=()
+    for r in $(find . -maxdepth 1 -mindepth 1 -type d); do
+        cd $r
+        if [[ -d "./.git" ]]; then
+            current_branch=$(git rev-parse --abbrev-ref HEAD)
+            echo "currently in $r... $current_branch"
+            if [[ "$current_branch" =~ "master|develop" ]]; then
+                echo "pulling newest changes from $r"
+                { git fetch && ggpull; } || error_repos+=("$r")
+            else
+                untouched_repos+=("$r")
+            fi
+        fi
+        cd ..
+    done
+    echo "=====================\n"
+    echo "untouched repositories: $untouched_repos"
+    echo "=====================\n"
+    echo "failed to update repositories: $error_repos"
+}
+

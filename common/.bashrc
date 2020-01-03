@@ -95,5 +95,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 export SHELL=`which zsh`
 [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
