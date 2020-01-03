@@ -42,7 +42,7 @@ export DOCKER_LOCATION=`whence docker`
 
 export JAVA_HOME
 export PYENV_ROOT
-export RBENV_ROOT
+#export RBENV_ROOT
 #export NVM_DIR
 #export JAVA_CMD
 

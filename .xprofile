@@ -1,11 +1,10 @@
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
-wal -i ~/Pictures/wallpaper/ymnb.png -b 1B1B1B
+if ! pgrep -u "$USER" fcitx > /dev/null; then
+    fcitx -d
+fi
 
-setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
-
-export GTK3_NOCSD_IGNORE=1
-export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0
+wal -i ~/Pictures/wallpaper/tsuru.png -b 1B1B1B
 
