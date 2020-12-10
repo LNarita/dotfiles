@@ -2,6 +2,8 @@ command -v pyenv >/dev/null && eval "$(pyenv init -)"
 command -v rbenv >/dev/null && eval "$(rbenv init -)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/lucy.narita/dev-tools/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -14,6 +16,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

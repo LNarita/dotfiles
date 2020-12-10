@@ -18,10 +18,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias emacs="emacs -nw"
 alias :q="exit"
 alias psg="ps auxf | grep -v grep | grep -i -e VSZ -e"
+alias ggf=""
 
 vpn() {
     echo "Connecting to VPN using config file: $VPN_CONFIG/$1.ovpn"
-    sudo openvpn --config "$VPN_CONFIG/$1.ovpn" --auth-nocache --verb 6;
+    sudo openvpn --config "$VPN_CONFIG/$1.ovpn" --auth-nocache --verb 6 --route-up $DEV_TOOLS_PATH/bin/fix-routes.sh;
 }
 
 git-latest-stable() {
@@ -80,3 +81,8 @@ ggupdate() {
     echo "failed to update repositories: $error_repos"
 }
 
+
+md5-hash() {
+    text=${1:-""}
+    echo -n $text | md5sum
+}

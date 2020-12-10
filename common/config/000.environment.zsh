@@ -1,2 +1,2 @@
-export WORKING_ENVIRONMENT="personal"
+export WORKING_ENVIRONMENT="work"
 
