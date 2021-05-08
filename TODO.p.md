@@ -3,14 +3,16 @@
 ## Struct
 
 ```
-setup/
-├── tools/
-├── distro/
-│   └── [distro]/
-│       └── pkg/
-│           ├── [pkg-manager].txt
-│           └── [profile]/
-│               └── [pkg-manager].txt
+root/
+├── setup/
+│   ├── setup.sh
+│   ├── tools/
+│   └── distro/
+│       └── [distro]/
+│           └── pkg/
+│               ├── [pkg-manager].txt
+│               └── [profile]/
+│                   └── [pkg-manager].txt
 ├── common/
 │   ├── distro/
 │   │   └── [distro]/
@@ -19,9 +21,7 @@ setup/
 │   │       └── home/
 │   │           └── [symlink-to-same-path-@-home]
 │   ├── config/
-│   │   └── [.sh-to-source]
 │   └── home/
-│       └── [symlink-to-same-path-@-home]
 └── [profile]/
     ├── distro/
     │   └── [distro]/
