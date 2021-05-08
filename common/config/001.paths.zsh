@@ -28,6 +28,8 @@ export PYENV_ROOT
 export NVM_DIR
 #export JAVA_CMD
 
+export CUSTOM_APP_CONFIG_DIR="$HOME/app-config"
+
 PATH="$CUSTOM_SCRIPTS_PATH:$GRAAL_VM_PATH/bin:$JAVA_HOME/bin:$YTB_DL:$ANACONDA_ROOT/bin:$PYENV_ROOT/bin:$RBENV_ROOT/bin:$PATH"
 
 export PATH

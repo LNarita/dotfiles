@@ -66,7 +66,7 @@ ggupdate() {
         if [[ -d "./.git" ]]; then
             current_branch=$(git rev-parse --abbrev-ref HEAD)
             echo "currently in $r... $current_branch"
-            if [[ "$current_branch" =~ "master|develop" ]]; then
+            if [[ "$current_branch" =~ "master|develop|main" ]]; then
                 echo "pulling newest changes from $r"
                 { git fetch && ggpull; } || error_repos+=("$r")
             else
