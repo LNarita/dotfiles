@@ -34,15 +34,15 @@ setup/
 
 ## Setup Script
 
-[ ] decide paths based on current distro
-[ ] backup dotfiles before setting up env
-[ ] symlink files
-[ ] install pkgs
+- [ ] decide paths based on current distro
+- [ ] backup dotfiles before setting up env
+- [ ] symlink files
+- [ ] install pkgs
 
 ## Custom Aliases
 
-[ ] pkg manager: save/remove pkg name if operation successful
+- [ ] pkg manager: save/remove pkg name if operation successful
 
 ## Other
 
-[ ] docs?
+- [ ] docs?
