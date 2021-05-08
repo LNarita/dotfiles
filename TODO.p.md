@@ -7,11 +7,13 @@ setup/
 ├── tools/
 ├── distro/
 │   └── [distro]/
+│       └── pkg/
+│           ├── [pkg-manager].txt
+│           └── [profile]/
+│               └── [pkg-manager].txt
 ├── common/
 │   ├── distro/
 │   │   └── [distro]/
-│   │       ├── pkg/
-│   │       │   └── [pkg-manager].txt
 │   │       ├── config/
 │   │       │   └── [.sh-to-source]
 │   │       └── home/
@@ -23,13 +25,10 @@ setup/
 └── [profile]/
     ├── distro/
     │   └── [distro]/
-    │       ├── pkg/
     │       ├── config/
     │       └── home/
     ├── config/
-    │   └── [.sh-to-source]
     └── home/
-        └── [symlink-to-same-path-@-home]
 ```
 
 ## Setup Script
